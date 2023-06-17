@@ -33,6 +33,9 @@ COPY . .
 # install project packages
 RUN composer install
 
+
+RUN php artisan migrate
+
 # for render to map the port
 ENV PORT=8000
 

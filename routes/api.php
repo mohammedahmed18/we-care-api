@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnswersController;
+use App\Http\Controllers\PracticesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestExamsController;
 use App\Http\Controllers\UsersController;
@@ -57,7 +58,12 @@ Route::prefix('/v1')->group(function () {
 
     //====================
 
+    //==================== practices Routes
 
+    Route::middleware('auth:sanctum')->prefix("practice")->group(function () {
+        Route::post("/", [PracticesController::class, "submitAnswer"]);
+    });
+    //====================
 
     //==================== Profile Routes
 

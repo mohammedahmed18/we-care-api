@@ -13,7 +13,10 @@ class TestExamsController extends Controller
     //
     function getTestExamDetails(Request $request, $test_exam_order)
     {
-        $examWithQuestions = TestExam::where('order', $test_exam_order)
+        $examWithQuestions = TestExam::where([
+            ['order', $test_exam_order],
+            ['type' , 'exam']
+        ])
             ->with(array('questions' => function ($query) {
                 $query->select('id', 'text', "test_exam_id");
             }))
@@ -31,7 +34,7 @@ class TestExamsController extends Controller
 
     function getAll()
     {
-        return TestExam::orderBy('order', 'asc')->get();
+        return TestExam::where('type' , 'exam')->orderBy('order', 'asc')->get();
     }
 
     function create(CreateTestExamRequest $request)

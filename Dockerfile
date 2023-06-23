@@ -34,7 +34,9 @@ COPY . .
 RUN composer install
 
 
-RUN php artisan migrate
+RUN php artisan migrate \
+&& php artisan db:seed --class TestExamSeeder \
+&& php artisan db:seed --class UserSeeder
 
 # for render to map the port
 ENV PORT=8000

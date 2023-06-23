@@ -14,6 +14,7 @@ class Answer extends Model
         "test_exam_id",
         "answers_map",
         "score",
+        'type'
     ];
 
 

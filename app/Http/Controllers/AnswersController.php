@@ -166,7 +166,7 @@ class AnswersController extends Controller
         130 => [80, 0],
         128 => [79, 0],
         127 => [78, 0],
-        126 => [0 ,55],
+        126 => [0, 55],
         125 => [77, 54],
         124 => [76, 0],
         123 => [0, 53],
@@ -199,7 +199,7 @@ class AnswersController extends Controller
         92  => [54, 35],
         90  => [53, 34],
         89  => [52, 0],
-        88  => [0 33],
+        88  => [0, 33],
         87  => [51, 0],
         86  => [50, 32],
         85  => [0, 31],
@@ -238,7 +238,7 @@ class AnswersController extends Controller
         47  => [24, 0],
         46  => [23, 0],
         44  => [22, 0],
-        43  => [21, 0]   
+        43  => [21, 0]
     ];
     function submit(SubmitAnswerRequest $request)
     {
@@ -282,7 +282,6 @@ class AnswersController extends Controller
             "score" => $score
         ]);
     }
-
 
 
     public function calcStandardScore(Request $request)
@@ -389,6 +388,9 @@ class AnswersController extends Controller
     public function getMyAnswers(Request $request)
     {
         $userId = $request->user()->id;
-        return Answer::where("user_id", $userId)->with('testExam')->get();
+        return Answer::where([
+            ["user_id", $userId],
+            ["type", 'exam'],
+        ])->with('testExam')->get();
     }
 }

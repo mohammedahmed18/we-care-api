@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnswersController;
+use App\Http\Controllers\MedicalHistoryController;
 use App\Http\Controllers\PracticesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestExamsController;
@@ -64,6 +65,15 @@ Route::prefix('/v1')->group(function () {
         Route::post("/", [PracticesController::class, "submitAnswer"]);
     });
     //====================
+
+
+    //==================== Medical history Routes
+
+    Route::middleware('auth:sanctum')->prefix("medical-history")->group(function () {
+        Route::get("/", [MedicalHistoryController::class, "getMyMedicalHistory"]);
+    });
+    //====================
+
 
     //==================== Profile Routes
 

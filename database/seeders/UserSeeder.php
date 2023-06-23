@@ -16,14 +16,16 @@ class UserSeeder extends Seeder
     {
         $email =  "mostafa123@email.com";
         $apiToken = Str::random(60);
-        $isFound = User::where("email" , $email)->first();
-        if($isFound) return;
+        $isFound = User::where("email", $email)->first();
+        if ($isFound) return;
 
         User::create([
             'name' => "Mostafa",
             'email' => $email,
             'password' => Hash::make("123456"),
             'api_token' => $apiToken,
+            'phone' => "+55 423 4122 333",
+            'child_image_src' => asset('children-images/test-image.jpeg')
         ]);
     }
 }

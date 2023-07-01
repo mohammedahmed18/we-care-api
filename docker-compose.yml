@@ -10,3 +10,4 @@ services:
       - POSTGRES_DB=we-care
     volumes:
       - ./postgres_stacks/postgres:/docker-entrypoint-initdb.d
+      

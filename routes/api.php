@@ -29,10 +29,13 @@ Route::prefix('/v1')->group(function () {
     Route::prefix('/auth')->group(function () {
         Route::post("/sign-up", [UsersController::class, "create"]);
         Route::post("/login", [UsersController::class, "login"]);
+        Route::post('/forgot-password', [UsersController::class, 'forgetPassword']);
 
 
-        Route::middleware('auth:sanctum')->get('/me', [UsersController::class, "getMyself"]);
-        Route::middleware('auth:sanctum')->delete("/logout", [UsersController::class, "logout"]);
+        Route::middleware('auth:sanctum')->group(function () {
+            Route::get('/me', [UsersController::class, "getMyself"]);
+            Route::delete("/logout", [UsersController::class, "logout"]);
+        });
     });
 
     //====================
@@ -81,8 +84,4 @@ Route::prefix('/v1')->group(function () {
         Route::put("/", [ProfileController::class, "update"]);
         Route::put("/child-image", [ProfileController::class, "uploadChildImage"]);
     });
-
-    //====================
-
-
 });

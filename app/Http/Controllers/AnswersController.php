@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 
 class AnswersController extends Controller
 {
-    public $maxSpeakingExamsCount = 6;
-    public $maxNonSpeakingExamsCount = 4;
+    public $maxSpeakingExamsCount = 4;
+    public $maxNonSpeakingExamsCount = 6;
     public $standardScore = [
         "1" => [
             // rules

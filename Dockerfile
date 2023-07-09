@@ -33,6 +33,9 @@ COPY . .
 # install project packages
 RUN composer install
 
+RUN php artisan config:clear
+RUN php artisan cache:clear
+
 
 RUN php artisan migrate -n --force \
     && php artisan db:seed --class TestExamSeeder --force \

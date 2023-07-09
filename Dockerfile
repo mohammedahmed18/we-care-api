@@ -34,7 +34,7 @@ COPY . .
 RUN composer install
 
 
-RUN php artisan migrate \
+RUN php artisan migrate -n --force \
     && php artisan db:seed --class TestExamSeeder --force \
     && php artisan db:seed --class UserSeeder --force
 

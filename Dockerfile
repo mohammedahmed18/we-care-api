@@ -37,9 +37,9 @@ RUN php artisan config:clear
 RUN php artisan cache:clear
 
 
-RUN php artisan migrate -n --force \
-    && php artisan db:seed --class TestExamSeeder --force \
-    && php artisan db:seed --class UserSeeder --force
+# RUN php artisan migrate -n --force \
+#     && php artisan db:seed --class TestExamSeeder --force \
+#     && php artisan db:seed --class UserSeeder --force
 
 
 # for render to map the port

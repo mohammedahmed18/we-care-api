@@ -35,8 +35,8 @@ RUN composer install
 
 
 RUN php artisan migrate \
-    && php artisan db:seed --class TestExamSeeder \
-    && php artisan db:seed --class UserSeeder
+    && php artisan db:seed --class TestExamSeeder --force \
+    && php artisan db:seed --class UserSeeder --force
 
 
 # for render to map the port

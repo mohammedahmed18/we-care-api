@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
- 
+
 WORKDIR /app
 
 
@@ -16,7 +16,7 @@ RUN apt update && apt install -y software-properties-common \
     && add-apt-repository ppa:ondrej/php \ 
     && apt update \
     && apt-get install -y --no-install-recommends php8.1 \
-    && apt-get install -y php8.1-cli php8.1-common php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-curl php8.1-xml php8.1-sqlite3 php8.1-bcmath \
+    && apt-get install -y php8.1-cli php8.1-common php8.1-mysql php8.1-pgsql php8.1-zip php8.1-gd php8.1-mbstring php8.1-curl php8.1-xml php8.1-sqlite3 php8.1-bcmath \
     # php libapache2-mod-php php-mbstring php-cli php-bcmath php-json php-xml php-zip php-pdo php-common php-tokenizer php-mysql \
     && curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
@@ -35,8 +35,8 @@ RUN composer install
 
 
 RUN php artisan migrate \
-&& php artisan db:seed --class TestExamSeeder \
-&& php artisan db:seed --class UserSeeder
+    && php artisan db:seed --class TestExamSeeder \
+    && php artisan db:seed --class UserSeeder
 
 
 # for render to map the port

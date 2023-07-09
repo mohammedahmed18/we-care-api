@@ -1,0 +1,32 @@
+name: Docker Image CI/CD
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up environment
+      run: |
+        echo ${{ secrets.ENV_FILE }} >> .env
+        
+            
+    - name: Log in to Docker Hub
+      run: docker login --username mohammed180 --password ${{ secrets.DOCKERHUB_PASSWORD }}
+      
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag we-care-api
+        
+
+    - name: Tag Docker image
+      run: docker tag medical-records-server mohammed180/we-care-api:latest
+
+    - name: Push the Docker image to Docker Hub
+      run: docker push mohammed180/we-care-api:latest

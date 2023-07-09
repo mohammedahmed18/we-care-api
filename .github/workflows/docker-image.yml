@@ -26,7 +26,7 @@ jobs:
         
 
     - name: Tag Docker image
-      run: docker tag medical-records-server mohammed180/we-care-api:latest
+      run: docker tag we-care-api mohammed180/we-care-api:latest
 
     - name: Push the Docker image to Docker Hub
       run: docker push mohammed180/we-care-api:latest
